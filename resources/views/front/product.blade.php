@@ -1,0 +1,827 @@
+@extends('layouts.front')
+@section('title')
+    @lang('site.home')
+
+@endsection
+@section('meta')
+      <meta name="description" content="{{ app()->getlocale() =='ar' ? $my_setting->site_name_ar :  $my_setting->site_name_en }} | {{ app()->getlocale() =='ar' ? $product->title_ar : $product->title_en }}">
+      <meta name="keywords" content="{{ app()->getlocale() =='ar' ? $my_setting->site_name_ar :  $my_setting->site_name_en }} | {{ app()->getlocale() =='ar' ? $product->title_ar : $product->title_en }}">
+
+      <meta property="og:title" content="{{ app()->getlocale() =='ar' ? $my_setting->site_name_ar :  $my_setting->site_name_en }} | {{ app()->getlocale() =='ar' ? $product->title_ar : $product->title_en }}">
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="{{url('/')}}">
+      <meta property="og:image" content="{{ asset('/storage/' . $product->img) }}">
+      <meta property="og:site_name" content="{{ app()->getlocale() =='ar' ? $my_setting->site_name_ar :  $my_setting->site_name_en }} | {{__('site.home') }}">
+      <meta property="og:description" content="{{ app()->getlocale() =='ar' ? $product->title_ar : $product->title_en }}">
+
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="{{url('/')}}">
+      <meta name="twitter:title" content="{{ app()->getlocale() =='ar' ? $my_setting->site_name_ar :  $my_setting->site_name_en }} | {{ app()->getlocale() =='ar' ? $product->title_ar : $product->title_en }}">
+      <meta name="twitter:description" content="{{ app()->getlocale() =='ar' ? $my_setting->site_name_ar :  $my_setting->site_name_en }} | {{ app()->getlocale() =='ar' ? $product->title_ar : $product->title_en }}">
+      <meta name="twitter:image" content="{{ asset('/storage/' . $product->img) }}">
+
+@endsection
+@section('css')
+<style>
+    .slick-list , .slick-track , .swiper{
+        width: 100% !important;
+    }
+
+</style>
+@endsection
+@section('content')
+    <!-----start  --->
+    <br><br>
+
+    <div class="container">
+        <div class="row dir-rtl">
+            <div class="col-md-6 product pad-0">
+                {{-- <div class="  heart "> --}}
+                {{-- <i class="far fa-heart "></i></div> --}}
+
+                {{-- <div class="   "> --}}
+                {{-- <a href="#" class="heart addToWishList text-white" data-product-id="{{ $product->id }}">
+                    <i class="far fa-heart "></i>
+                </a> --}}
+                {{-- </div><!----> --}}
+
+
+                <div id="carouselExampleIndicators" class="carousel slide carousel1 " data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            {{-- <div class="  zoom "><a href="" data-toggle="modal" data-target="#zoom"><i
+                                        class="fas fa-expand-alt"></i></a></div> --}}
+
+                            <img data-enlargeable src="{{ asset('/storage/' . $product->img) }}" class="d-block w-100 h-img" alt="..."
+                                data-toggle="modal" data-target="#staticBackdrop">
+                        </div>
+                        {{-- <div class="carousel-item"> --}}
+                        {{-- <img src="{{asset('/storage/'.$product->height_img)}}" class="d-block w-100 h-img" alt="..." data-toggle="modal" data-target="#staticBackdrop"> --}}
+                        {{-- <div class="  zoom "><a href=""  data-toggle="modal" data-target="#zoom2"><i class="fas fa-expand-alt"></i></a></div> --}}
+
+                        {{-- </div> --}}
+
+                        @if ($product->images->count() > 0)
+                            @foreach ($product->images as $img)
+                                <div class="carousel-item">
+                                    <img data-enlargeable src="{{ asset($img->img) }}" class="d-block w-100 h-img" alt="..."
+                                        data-toggle="modal" data-target="#staticBackdrop">
+                                    {{-- <div class="  zoom "><a href="" data-toggle="modal" data-target="#zoom3"><i
+                                                class="fas fa-expand-alt"></i></a></div> --}}
+
+                                </div>
+
+
+                            @endforeach
+                        @endif
+
+
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev"
+                        style="bottom: 25%!important">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">@lang('site.previous')</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"
+                        style="bottom: 25%!important">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">@lang('site.next')</span>
+                    </a>
+                </div>
+
+                <ol class=" position-relative navbar"
+                    style="width:100%;margin-top:10px;z-index: 10;list-style: none;justify-content:start">
+                    
+
+
+
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="">
+                        <img src=" {{ asset('/storage/' . $product->img) }}" class="img">
+                    </li><br>
+                    {{-- <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""> --}}
+                    {{-- <img src=" {{asset('/storage/'.$product->height_img)}}"  class="img"> --}}
+                    {{-- </li><br> --}}
+                    @if ($product->images->count() > 0)
+                        @foreach ($product->images as $img)
+
+                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index + 1 }}"
+                                class="">
+                                <img src="{{ asset($img->img) }}" class="img">
+                            </li><br>
+
+                        @endforeach
+                    @endif
+                </ol>
+
+                {{-- <div class="owl-carousel owl-theme">
+                    <div class="item" data-target="#carouselExampleIndicators" data-slide-to="0"><h4>
+                        <img src=" {{ asset('/storage/' . $product->img) }}" class="img">
+                        </h4></div>
+                        @if ($product->images->count() > 0)
+                        @foreach ($product->images as $img)
+                    <div class="item" data-target="#carouselExampleIndicators" data-slide-to="{{ $loop->index + 1 }}"><h4>
+                        <img src="{{ asset($img->img) }}" class="img">
+                                            </h4></div>
+                                            @endforeach
+                                            @endif
+
+                </div> --}}
+
+            </div>
+
+            <div class="col-sm-5 ml-auto product-dir">
+                {{-- <nav class="navbar navbar-expand pad-0 " > --}}
+                {{-- <ul class="navbar-nav"> --}}
+                {{-- <li class="nav-item "><a class="nav-link "style="margin-left: -7px" href="{{route('/')}}">HOME  /</a></li> --}}
+                {{-- <li class="nav-item "><a class="nav-link " href="{{route('category' , [1 , $product->basic_category->id])}}"> --}}
+                {{-- @if (Lang::locale() == 'ar') --}}
+                {{-- {{ $product->basic_category->name_ar}}  / --}}
+
+                {{-- @else --}}
+                {{-- {{ $product->basic_category->name_en}}  / --}}
+
+
+                {{-- @endif --}}
+
+                {{-- </a></li> --}}
+                {{-- <li class="nav-item "><a class="nav-link " href="{{route('category' , [2 , $product->category->id])}}"> --}}
+
+                {{-- @if (Lang::locale() == 'ar') --}}
+                {{-- {{ $product->category->name_ar}} --}}
+
+                {{-- @else --}}
+                {{-- {{ $product->category->name_en}} --}}
+
+
+                {{-- @endif --}}
+
+                {{-- </a></li> --}}
+                {{-- </ul> --}}
+                {{-- </nav> --}}
+                <h2 class="text-dir"><a href="" class="cursor-no">
+
+                        @if (Lang::locale() == 'ar')
+                            {{ $product->basic_category->name_ar }}
+                            @if ($product->category_id != 0)
+                                -
+                                {{ $product->category->name_ar }}
+                            @endif
+                        @else
+
+                            {{ $product->basic_category->name_en }}
+
+                            @if ($product->category_id != 0)
+                                -
+                                {{ $product->category->name_en }}
+                            @endif
+                        @endif
+
+                    </a></h2>
+                {{-- <div class="is-divider"></div> --}}
+                
+                <h6 class="text-dir  h6-product">
+                    @if (Lang::locale() == 'ar')
+                        {{ $product->title_ar }}
+                    @else
+                        {{ $product->title_en }}
+
+                    @endif
+
+
+                </h6>
+                
+                <h6 class="text-dir" style="font-size: 17px">
+                    @if (Lang::locale() == 'ar')
+                        {{ $product->description_ar }}
+                    @else
+                        {{ $product->description_en }}
+                    @endif
+
+                </h6>
+
+                <h6 class="text-dir" style="font-size: 17px">
+                    @if (Lang::locale() == 'ar')
+                        {{ $product->brand_name_ar }}
+                    @else
+                        {{ $product->brand_name_ar }}
+                    @endif
+
+                </h6>
+                {{-- <div class="is-divider"></div> --}}
+                
+                {{-- <a href="{{asset('front/img/size.jpeg')}}"> <img src="{{asset('front/img/size.jpeg')}}" --}}
+                {{-- onerror="this.onerror=null;this.src='{{asset('front/img/5.jpg')}}'" --}}
+                {{-- class="w-100">  </a> --}}
+                <h6 class="text-dir h6-product">
+
+                    @guest()
+                        @if (Cookie::get('name'))
+                            {{ number_format($product->price / App\Country::find(Cookie::get('name'))->currency->rate, 2) }}
+                             {{ App\Country::find(Cookie::get('name'))->currency->code }}
+
+
+                        @else
+                            {{ $product->price }}
+                            @lang('site.kwd')
+                        @endif
+
+                    @else
+                        {{ Auth::user()->getPrice($product->price) }}
+                        {{ Auth::user()->country->currency->code }}
+                    @endguest
+                    @if($product->has_offer == 1 && $product->price < $product->before_price)
+                    <span class="font-small" style="text-decoration: line-through;font-size: 18px !important; color: red">
+                        @auth()
+                            {{ Auth::user()->getPrice($product->before_price) }}
+                            {{ Auth::user()->country->currency->code }}
+                        @endauth
+                        @guest()
+                            @if (Cookie::get('name'))
+                                {{ number_format($product->before_price / App\Country::find(Cookie::get('name'))->currency->rate, 2) }}
+                                 {{ App\Country::find(Cookie::get('name'))->currency->code }}
+                                <!--@lang('site.kwd')-->
+                            @else
+                                {{ $product->before_price }}
+                                @lang('site.kwd')
+                            @endif
+                        @endguest
+
+                    </span>
+                    @endif
+                </h6>
+
+
+
+                
+                @if ($product->basic_category->type!= 1)
+
+                <div id="colors">
+                    <div id="s" class="color-blocks" style="">
+                        <span>@lang('site.size') :</span>
+
+                        @if ($product->product_sizes->count() > 0)
+                            <div class="d-flex rtl-margin">
+                                @foreach ($product->product_sizes as $size)
+
+                                    <div class="radio-inline color">
+                                        <input type="radio" name="size" value="{{ $size->id }}"
+                                            id="size-{{ $size->id }}">
+                                        <label for="size-{{ $size->id }}">{{ $size->size->name }}</label>
+                                    </div>
+
+
+                                @endforeach
+                            </div>
+                        @else
+                            المنتج غير متوفر
+                        @endif
+                    </div>
+                </div>
+                <br>
+                
+                @endif
+
+
+
+
+                <div id="heights">
+
+                </div>
+
+                {{-- <br>
+                <h6 style="font-weight:600 " class="textarea-dir" >@lang('site.note')</h6>
+
+                <textarea  class="w-100  " rows="5"></textarea> --}}
+                
+                <form class=" product-count float-right d-none">
+                    <a rel="nofollow" class="btn btn-default btn-minus" href="#" title="Subtract">&ndash;</a>
+                    <input type="text" disabled="" size="2" autocomplete="off"
+                        class="cart_quantity_input form-control grey count" value="1" name="quantity">
+                    <a rel="nofollow" class="btn btn-default btn-plus" href="#" title="Add" style="margin: -9px;">+</a>
+                </form>
+
+                {{--<div id="TabbyPromo"></div>--}}
+                <br>
+                @if ($product->basic_category->type!= 1 &&$product->size_guide_id !=null )
+
+                <a class="btn bg-main " data-toggle="modal" data-target="#exampleModalCenter"
+                    style="width: 100%;background: #212529 !important;">@lang('site.size_guide')</a>
+                    @endif
+                <a id="add_cart" class="btn bg-main "
+                    style="width: 100%;background: #000000 !important;margin-top:10px">@lang('site.add_to_cart')</a>
+                <div class="row" >
+                    <a class="btn bg-main addToWishList" data-product-id="{{ $product->id }}"
+                    style="margin:10px 0px;width: 70%;background: #212529 !important;">@lang('site.add_to_wishlist')</a>
+                  
+                    <span id="bn-click" style="cursor: pointer;margin:10px;padding: 8px;background: #67ced7 !important;color: #fff;border-radius: 5%;">Share: <i class="fas fa-share"></i></span>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <!--- end  --->
+    <div class="container ">
+        {{-- <hr> --}}
+        {{-- @if ($product->product_hights->count() > 0) --}}
+        {{-- <div class="row"> --}}
+        {{-- <h5 class="col-md-2">@lang('site.height')</h5> --}}
+        {{-- <p class="col-md-10"> --}}
+        {{-- @foreach ($product->product_hights as $height) --}}
+        {{-- @if ($height->quantity > 0) --}}
+        {{-- {{$height->height->name}}, --}}
+        {{-- @endif --}}
+        {{-- @endforeach --}}
+        {{-- </p> --}}
+        {{-- </div> --}}
+        {{-- <hr> --}}
+        {{-- @endif --}}
+        {{-- @if ($product->product_sizes->count() > 0) --}}
+        {{-- <div class="row"> --}}
+        {{-- <h5 class="col-md-2 " >@lang('site.size')</h5> --}}
+        {{-- <p class="col-md-10"> --}}
+        {{-- @foreach ($product->product_sizes as $height) --}}
+        {{-- {{$height->size->name}}, --}}
+        {{-- @endforeach --}}
+
+        {{-- </p> --}}
+        {{-- </div> --}}
+
+        {{-- @endif --}}
+
+        {{-- <hr> --}}
+        <br>
+        <h3 class="text-center ">@lang('site.related_products')
+        </h3>
+        
+
+        <div class="row text-dir">
+
+            <div class="col-12">
+                <ul class="tablinks  row MyServices mr-0 pad-0 text-center justify-content-center">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            @if (\App\BasicCategory::find($product->basic_category_id)->products->count() > 0)
+                                @foreach (\App\BasicCategory::find($product->basic_category_id)->products as $p)
+                                    @if ($p->id != $product->id && $p->appearance == 1)
+                                        <div class="swiper-slide" data-swiper-autoplay="2000">
+                                            <div class=" product relative">
+                                                {{-- <div class="  heart ">
+                                                    <a href="#" class="addToWishList text-white"
+                                                        data-product-id="{{ $p->id }}">
+                                                        <i class="far fa-heart "></i>
+                                                    </a>
+
+                                                </div> --}}
+                                                <div style="flex-direction: column;display: flex">
+                                                    <div>
+                                                        <a href="{{ route('product', $p->id) }}"
+                                                            class="test image-hover">
+
+                                                            <img src="{{ asset('/storage/' . $p->img) }}"
+                                                                onerror="this.onerror=null;this.src='{{ asset('front/img/3.jpg') }}'"
+                                                                width="100%" class="show-img ">
+
+                                                            @if ($img = App\ProdImg::where('product_id', $p->id)->first())
+                                                                <img src="{{ asset($img->img) }}" width="100%"
+                                                                    class="hide-img">
+                                                                <div class="middle">
+                                                                    <div class="btn btn-danger">@lang('site.add_to_cart')
+                                                                    </div>
+                                                                </div>
+                                                            @else
+                                                                <img src="{{ asset('/storage/' . $p->img) }}"
+                                                                    width="100%" class="hide-img">
+                                                                <div class="middle">
+                                                                    <div class="btn btn-danger">@lang('site.add_to_cart')
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="text-dir">
+                                                        <p class="mr-0">
+                                                            <a href="{{ route('product', $p->id) }}">
+                                                                @if (Lang::locale() == 'ar')
+                                                                    {{ $p->title_ar }}
+
+                                                                @else
+
+                                                                    {{ $p->title_en }}
+
+                                                                @endif
+
+
+                                                            </a>
+                                                        </p>
+                                                        <h6><a href="{{ route('product', $p->id) }}">
+
+
+                                                                @if (Lang::locale() == 'ar')
+                                                                    {{-- {{$p->basic_category->name_ar}}
+                                                -
+                                                {{$p->category->name_ar}} --}}
+                                                                    <?php $pieces = explode(' ', $p->description_ar);
+                                                                    $first_part = implode(' ', array_splice($pieces, 0, 4)); ?>
+                                                                    {{ $first_part }}
+                                                                @else
+
+                                                                    {{-- {{$p->basic_category->name_en}}
+                                                -
+                                                {{$p->category->name_en}} --}}
+                                                                    <?php $pieces = explode(' ', $p->description_en);
+                                                                    $first_part = implode(' ', array_splice($pieces, 0, 4)); ?>
+                                                                    {{ $first_part }}
+                                                                @endif
+
+
+                                                            </a></h6>
+                                                        <div class="d-flex justify-content-start">
+                                                            <h6 style="text-decoration: line-through; color: red">
+
+
+                                                            @auth()
+                                                                {{ Auth::user()->getPrice($p->before_price) }}
+                                                                {{ Auth::user()->country->currency->code }}
+                                                            @endauth
+                                                            @guest()
+                                                                @if (Cookie::get('name'))
+                                                                    {{ number_format($p->before_price / App\Country::find(Cookie::get('name'))->currency->rate, 2) }}
+                                                                    {{ App\Country::find(Cookie::get('name'))->currency->code }}
+                                                                    <!--@lang('site.kwd')-->
+                                                                    @else
+                                                                        {{ $p->before_price }}
+                                                                        @lang('site.kwd')
+                                                                    @endif
+                                                                @endguest
+
+                                                            </h6>
+                                                            &nbsp;
+                                                            <h5>
+
+
+                                                            @auth()
+                                                                {{ Auth::user()->getPrice($p->price) }}
+                                                                {{ Auth::user()->country->currency->code }}
+                                                            @endauth
+                                                            @guest()
+                                                                @if (Cookie::get('name'))
+                                                                    {{ number_format($p->price / App\Country::find(Cookie::get('name'))->currency->rate, 2) }}
+                                                                    {{ App\Country::find(Cookie::get('name'))->currency->code }}
+                                                                    <!--@lang('site.kwd')-->
+                                                                    @else
+                                                                        {{ $p->price }}
+                                                                        @lang('site.kwd')
+                                                                    @endif
+                                                                @endguest
+
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    @endif
+                                @endforeach
+                        </div>
+
+                    </div>
+                @else
+                    لا يوجد
+                    @endif
+
+                </ul>
+            </div>
+        </div>
+        
+            <div class="text-center m-auto gq gr gs dg ck dh di cn gt c1 gu gv cq p cr gw gx gy">
+                <a href="{{ route('offer') }}" class="">
+                    <div class="text-center text-light">عرض المزيد</div>
+                </a>
+            </div>
+            <br>
+    </div>
+    <!-- Button trigger modal -->
+
+@if ($product->basic_category->type!= 1 && $product->size_guide_id !=null)
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <img src="{{ asset('/storage/' . $product->size_guide->image_url) }}" class="d-block w-100 h-img"
+                        style="object-fit: contain" alt="..." data-toggle="modal" data-target="#staticBackdrop">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--- end  --->
+    @endif
+
+
+    <?php
+        if (Cookie::get('name')){
+            $currency_en = App\Country::find(Cookie::get('name'))->currency->code;
+        }else{
+            $currency_en = "KWD";
+        }
+    ?>
+
+
+@endsection
+<?php
+    if (Cookie::get('name'))  {
+        $total = $product->price / App\Country::find(Cookie::get('name'))->currency->rate;
+        $currency_en = App\Country::find(Cookie::get('name'))->currency->code;
+
+    }else{
+        $total = $product->price;
+        $currency_en = "KWD";
+        $rate = 1;
+
+    }
+?>
+@section('script')
+    <script src="https://checkout.tabby.ai/tabby-promo.js"></script>
+    <script>
+        new TabbyPromo({
+            selector: '#TabbyPromo', // required, content of tabby Promo Snippet will be placed in element with that selector.
+            currency: "{{$currency_en}}", // required, currency of your product. AED|SAR|KWD|BHD|QAR only supported, with no spaces or lowercase.
+            price: "{{($total)}}", // required, price or the product. 2 decimals max for AED|SAR|QAR and 3 decimals max for KWD|BHD.
+            installmentsCount: 4, // Optional, for non-standard plans.
+            lang: "{{app()->getLocale()}}", // Optional, language of snippet and popups, if the property is not set, then it is based on the attribute 'lang' of your html tag.
+            source: 'product', // Optional, snippet placement; `product` for product page and `cart` for cart page.
+            publicKey: 'pk_96b383b9-0536-4149-a109-c4b3ce9284f1', // required, store Public Key which identifies your account when communicating with tabby.
+            merchantCode: 'rayanstorekwt'  // required
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#heights').hide();
+            let sizeVal;
+
+            $('input[name="size"]').on('click', function() {
+
+                $('#heights').hide();
+                // console.log($(this).val())
+                //TODO :: ON CLICK IF CHECKED VIEW THE HEIGHTS ELSE MAKE CONTAINER HIDDEN
+
+                if ($('input[name=size]').is(':checked')) {
+                    var card_type = $("input[name=size]:checked").val();
+                    sizeVal = card_type;
+                    getHeights(sizeVal);
+                }
+            });
+            //TODO :: GET #S ->CONTENT
+            $('#add_cart').on('click', function() {
+
+
+                //GET PRODUCT ID
+                //GET QUANTITY
+                //GET SIZE ID
+                //GET HEIGHT ID
+
+
+                let size = 0;
+                let height = 0;
+                let product = '{{ $product->id }}';
+                let quantity = $("input[name=quantity]").val();
+                let basic_type = '{{ $product->basic_category->type }}';
+
+
+                //TODO :: IF NOT SELECTED HEIGHT OR SIZE ASK TO CHOOSE
+
+                if ($('input[name=size]').is(':checked')) {
+                    size = $("input[name=size]:checked").val();
+                }
+
+                if ($('input[name=height]').is(':checked')) {
+                    height = $("input[name=height]:checked").val();
+                }
+
+                if ((basic_type !=1 && size == 0) || ( basic_type!=1 && height == 0)) {
+                    Swal.fire({
+                        //icon: '?',
+                        title: 'يرجي تحديد الخيارات ',
+                        //confirmButtonColor: '#212529',
+                        showConfirmButton: false,
+                        position: 'bottom-start',
+                        showCloseButton: true,
+                    })
+                } else {
+                    // console.log("ok");
+                    addToCart(product, quantity, height, size);
+                }
+
+            });
+
+            function addToCart(productId, quantity, heightId, sizeId) {
+                console.log('productId :  '+productId+'quantity :  '+quantity+'heightId :  '+heightId+'sizeId :  '+sizeId);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url: "{{ route('add.to.cart') }}",
+                    method: 'post',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        quantity: quantity,
+                        product_id: productId,
+                        product_size_id: sizeId,
+                        product_height_id: heightId,
+                    },
+                    success: function(result) {
+                        console.log(result);
+                        //CHECK SIZE VALUES
+                        //CHECK HEIGHTS VALUE
+                        Swal.fire({
+                            toast: true,
+                            icon: 'success',
+                            title: 'تمت الإضافه الي السله',
+                            text:result,
+                            animation: false,
+                            position: 'bottom-start',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        });
+                        // console.log(result);
+
+                        location.reload();
+
+
+                    },
+                   error: function(xhr, status, error) {
+                    console.log("XHR:", xhr);
+                    console.log("Status:", status);
+                    console.log("Error:", error);
+
+
+                        console.log(error);
+                        Swal.fire({
+                           title: 'لم تكتمل العمليه ',
+                           text: xhr.responseText, // Add this for debugging
+                            icon: 'error',
+                            showConfirmButton: false,
+                            //confirmButtonColor: '#212529',
+                            position: 'bottom-start',
+                            showCloseButton: true,
+                        })
+                        // Swal.fire({
+                        //         title: 'لم تكتمل العمليه ',
+                        //         icon: '؟',
+                        //         iconHtml: '؟',
+                        //         confirmButtonText: 'ok',
+                        //         showCancelButton: false,
+                        //         showCloseButton: true
+                        //         })
+                    }
+                });
+            }
+
+            function getHeights(sizeId) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url: "{{ route('get.heights') }}",
+                    method: 'get',
+                    data: {
+                        size_id: sizeId
+                    },
+                    success: function(result) {
+                        //CHECK SIZE VALUES
+                        //CHECK HEIGHTS VALUE
+                        // console.log(result);
+                        $('#heights').html(result);
+                        $('#heights').show();
+                    }
+                });
+            }
+            //TODO :: WHEN CHOOSE SIZE SHOW HEIGHT
+            //TODO :: REFRESH CHECKOUT CART
+            //TODO :: ADD & REMOVE FROM CART
+        })
+
+        $(document).on('click', '.addToWishList', function(e) {
+
+            e.preventDefault();
+            @guest()
+                // $('.not-loggedin-modal').css('display','block');
+                // console.log('You are guest'
+
+                {{-- {{\RealRashid\SweetAlert\Facades\Alert::error('error', 'Please Login first!')}} --}}
+                Swal.fire({
+                icon: '?',
+                title:'Login first!',
+                showConfirmButton: false,
+                //confirmButtonColor: '#212529',
+                position:'bottom-start',
+                showCloseButton: true,
+                })
+            @endguest
+            @auth
+                $.ajax({
+                type: 'get',
+                url:"{{ route('wishlist.store') }}",
+                data:{
+                'productId':$(this).attr('data-product-id'),
+                },
+                success:function (data) {
+                if (data.message){
+                Swal.fire({
+                icon: '?',
+                title: 'Added successfully!',
+                //confirmButtonColor: '#212529',
+                position:'bottom-start',
+                showCloseButton: true,
+                showConfirmButton: false,
+                timer: 1500
+                })
+                $(".heart").click(function() {
+                $(this).toggleClass("heart-hover");
+
+                });
+
+                }
+                else {
+                // alert('This product already in you wishlist');
+                Swal.fire({
+                title: 'This product already in you wishlist',
+                icon: '?',
+                //confirmButtonColor: '#212529',
+                position:'bottom-start',
+                showCloseButton: true,
+                showConfirmButton: false,
+                timer: 1500
+                });
+                $(".heart").click(function() {
+                $(this).toggleClass("heart-hover");
+
+                });
+
+
+                }
+                }
+                });
+            @endauth
+
+
+        });
+    </script>
+    <script>
+        let shareData = {
+            url: window.location.href,
+          }
+
+          document.querySelector('#bn-click').addEventListener('click', () => {
+            navigator.share(shareData);
+          });
+        $('img[data-enlargeable]').addClass('img-enlargeable').click(function() {
+            var src = $(this).attr('src');
+            var modal;
+
+            function removeModal() {
+                modal.remove();
+                $('body').off('keyup.modal-close');
+            }
+            modal = $('<div>').css({
+                background: 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
+                backgroundSize: 'contain',
+                width: '100%',
+                height: '100%',
+                position: 'fixed',
+                zIndex: '10000',
+                top: '0',
+                left: '0',
+                cursor: 'zoom-out'
+            }).click(function() {
+                removeModal();
+            }).appendTo('body');
+            //handling ESC
+            $('body').on('keyup.modal-close', function(e) {
+                if (e.key === 'Escape') {
+                    removeModal();
+                }
+            });
+        });
+    </script>
+@endsection
