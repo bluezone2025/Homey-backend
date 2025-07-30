@@ -19,3 +19,4 @@ composer.lock
 error_log
 public/error_log
 public/arkan-989a0-firebase-adminsdk-zce83-16ad5475ca.json
+/public/*firebase-adminsdk*.json
