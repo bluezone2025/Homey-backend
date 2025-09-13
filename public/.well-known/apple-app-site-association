@@ -1,0 +1,9 @@
+{
+    "applinks": {
+        "details": [{
+            "appIDs": ["4W85KLPQDW.com.B-dinar-zone"],
+            "paths" : ["/product/*","/brand/*","/blogs/*"] 
+        }]
+    }
+  
+}

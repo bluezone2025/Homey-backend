@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.trendat.bluezone",
+      "sha256_cert_fingerprints": [
+        "e5:af:bd:2e:3e:35:46:d2:3f:b9:75:1c:f9:d1:37:08:88:50:4e:13:d2:ee:27:6c:c1:87:84:54:bb:66:1f:2c",
+        "5F:2C:1C:BA:36:F9:88:60:EA:FD:D9:C7:0E:5E:F0:F9:4D:2A:67:F6:30:60:AC:14:BA:DA:B1:BD:70:2B:B8:E9"
+      ]
+    }
+  }
+]

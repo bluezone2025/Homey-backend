@@ -1,0 +1,341 @@
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1100px;
+    }
+    .row5 .col-lg-3 {
+        max-width: 20% !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 990px) {
+    .swiper-container {
+        height: 330px !important;
+    }
+    .swiper{
+        height: 100% !important;
+    }
+    .swiper-container-1{
+        height: 300px !important;
+    }
+    /*.swiper-wrapper{*/
+    /*    height: 300px !important;*/
+    /*}*/
+    .main-ad2{
+        height: 300px !important;
+    }
+    .brand-class{
+        height: 300px !important;
+    }
+    .h-img {
+        height: auto !important;
+        max-height: 250px !important;
+    }
+
+}
+
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = 1025px to 1280px
+*/
+
+@media (min-width: 990px) and (max-width: 1280px) {}
+
+@media(max-width: 550px){
+    .brands-div img{
+        height: 70% !important;
+    }
+    .h img{
+        height: 30vh !important;
+    }
+}
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 989px) {
+    .dropdownSection h2 {
+        font-size: 17px !important;
+    }
+    .textDropdown {
+        overflow: hidden;
+    }
+    .sticky1 {
+        top: 35px;
+    }
+    .custom-h {
+        height: 35vh;
+    }
+    .custom-h-brand {
+        height: 25vh;
+    }
+    .custom-h3 {
+        height: 30vh;
+    }
+    .h-resp{
+        height:24vh !important;
+    }
+    .h-resp img{
+        height:100% !important;
+    }
+    .card-body {
+    height: 6vh;
+    }
+    .card{
+        height: 300px !important;
+    }
+    .swiper-slide:hover .btn-item-product {
+
+        margin: 19%!important;
+        margin-top: 40%!important;
+    }
+    .card .abs {
+        position: absolute;
+        right: 143px;
+        top: 127px;
+        height: 33px;
+        width: 55px;
+        font-size: small !important;
+        padding: 6px;
+        color: #fff
+    }
+
+}
+@media (max-width: 768px) and (min-width: 700px) {
+    .card .abs {
+        position: absolute;
+        right: 170px;
+        top: 228px;
+        height: 33px;
+        width: 55px;
+        font-size: small !important;
+        padding: 6px;
+        color: #fff
+    }
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = 481px to 767px
+*/
+
+@media (min-width: 501px) and (max-width: 767px) {
+    .h1-after::after {
+        content: "";
+        display: block;
+        width: 17%;
+        height: 3px;
+        background: #000;
+        left: 0;
+        top: 50%;
+        position: absolute
+    }
+
+    .h1-after::before {
+        content: "";
+        display: block;
+        width: 17%;
+        height: 3px;
+        background: #000;
+        right: 0;
+        top: 50%;
+        position: absolute
+    }
+    .brand-class{
+        height: 250px !important;
+    }
+    .card .abs {
+        position: absolute;
+        right: 170px;
+        top: 229px;
+        height: 33px;
+        width: 55px;
+        font-size: small !important;
+        padding: 6px;
+        color: #fff
+    }
+
+}
+@media  (max-width: 501px) {
+    .add-to-cart-btn{
+        font-size: 5px !important;
+        width: 104px !important;
+    }
+}
+@media (max-width: 530px) {
+.product-path{
+    font-size: xx-small !important;
+}
+    /*.card .abs {*/
+    /*    position: absolute;*/
+    /*    right: 94px;*/
+    /*    top: 213px;*/
+    /*    height: 33px;*/
+    /*    width: 55px;*/
+    /*    font-size: small !important;*/
+    /*    padding: 6px;*/
+    /*    color: #fff*/
+    /*}*/
+
+}
+
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = 320px to 479px
+*/
+
+@media (min-width: 351px) and (max-width: 500px) {
+    .logo img {
+        width: 120px;
+        margin-left: 5px;
+    }
+    .account,
+    .w-50 {
+        width: 80%!important;
+    }
+    .h1,
+    h1 {
+        font-size: 1.2rem;
+    }
+    .h1-after::before,
+    .h1-after::after {
+        width: 15%;
+    }
+    .custom-h {
+        height: 45vh !important;
+    }
+    .custom-h-brand {
+        height: 28vh;
+    }
+    .custom-h3 {
+        height: 31vh;
+    }
+    a.a-more {
+        font-size: 12px;
+    }
+    .h-resp {
+        height: 100% !important;
+        overflow: hidden;
+    }
+    .h-resp img {
+    height: 250px !important;
+}
+    .card-body{
+        height:15vh;
+    }
+    .swiper-pagination-bullet{
+        width: 10px !important;
+        height: 10px !important;
+    }
+    .carousel-indicators li{
+        width: 10px !important;
+        height: 10px !important;
+    }
+    #product-data-div {
+        width: 100%;
+        padding: 15px 30px;
+        display: flex;
+        border-top: 2px solid #55708B;
+        border-bottom: none !important;
+    }
+
+}
+
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = 320px to 479px
+*/
+/*@media (min-width: 0px) and (max-width: 400px) {*/
+/*    .custom-h {*/
+/*        height: 59vh !important;*/
+/*    }*/
+/*}*/
+@media (min-width: 0px) and (max-width: 376px) {
+    .custom-h {
+        height: 62vh !important;
+    }
+    .custom-h3 {
+        height: 40vh !important;
+    }
+    .custom-h-brand {
+        height: 25vh;
+    }
+    .shop-section{
+        height: 70vh  !important;
+    }
+    .card .abs {
+        right: 105px !important;
+        top: 230px !important;
+        font-size: small !important;
+    }
+}
+@media (min-width: 377px) and (max-width: 390px) {
+    .logo img {
+        width: 120px;
+        margin-left: 5px;
+    }
+    .account,
+    .w-50 {
+        width: 90%!important;
+    }
+    .btn.col-3,
+    .btn.col-9 {
+        padding-right: 0px!important;
+        padding-left: 0px!important;
+    }
+    .h1,
+    h1 {
+        font-size: 1.2rem !important;
+    }
+    .custom-h {
+         height: 47vh !important;
+    }
+    .custom-h3 {
+        height: 34vh !important;
+    }
+    .custom-h-brand {
+        height: 25vh;
+    }
+    .shop-section{
+        height: 53vh  !important;
+    }
+
+    .h-resp {
+        height: 100% !important;
+        overflow: hidden;
+    }
+    .h-resp img {
+        height: 170px !important;
+    }
+    .card-body {
+        padding: 0.5rem;
+        height: 100px !important;
+    }
+    .card .is_order{
+        font-size: x-small !important;
+        padding: 5px !important;
+    }
+    .btn-item-product{
+    margin-top: 173px !important;
+    }
+    .card .abs {
+        right: 110px !important;
+        top: 230px !important;
+        font-size: small !important;
+    }
+}
+@media (min-width: 400px) and (max-width: 500px) {
+    .card .abs {
+        right: 122px !important;
+        top: 230px !important;
+        font-size: small !important;
+    }
+}

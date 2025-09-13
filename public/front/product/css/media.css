@@ -1,0 +1,136 @@
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1201px) {}
+
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = 1025px to 1280px
+*/
+
+@media (min-width: 990px) and (max-width: 1200px) {}
+
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 989px) {}
+
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = 481px to 767px
+*/
+
+@media (min-width: 571px) and (max-width: 767px) {
+    .logo {
+        width: 100px
+    }
+    footer .col-md-2 {
+        padding-top: 10px;
+    }
+    .img {
+        height: 50px;
+        width: 50px;
+        margin: 5px;
+    }
+    .country>div {
+        width: 100%;
+    }
+    .abs {
+        padding-top: 30%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .container1 {
+        width: 80%;
+    }
+    .img {
+        height: 50px;
+        width: 50px;
+        margin: 5px;
+    }
+    .center {
+        text-align: center!important;
+        margin: auto!important;
+    }
+    .left {
+        text-align: left!important;
+    }
+}
+
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = 320px to 479px
+*/
+
+@media (min-width: 0px) and (max-width: 570px) {
+    .col-6 {
+        padding-left: 5px!important;
+        padding-right: 5px!important;
+    }
+    .col-6 img {
+        object-fit: cover;
+        height: 200px;
+    }
+    .MyServices img {
+        height: 200px;
+    }
+    .container1 .pad-0 img {
+        height: 50vh;
+    }
+    .h-img {
+        height: 70vh;
+        object-fit: cover;
+    }
+    .logo {
+        width: 100px
+    }
+    #accordion .btn-dark {
+        width: 100px;
+    }
+    footer .col-md-2 {
+        padding-top: 10px;
+    }
+    .img {
+        height: 40px;
+        width: 40px;
+        margin: 5px;
+    }
+    .h-80 {
+        height: 50vh;
+    }
+    nav li {
+        padding: .1rem .1rem;
+    }
+    .country>div {
+        width: 100%;
+    }
+    .left {
+        text-align: left!important;
+    }
+    .abs {
+        padding-top: 30%;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .container1 {
+        width: 90%;
+        margin: auto;
+    }
+    .img {
+        height: 50px;
+        width: 50px;
+        margin: 5px;
+    }
+    .center {
+        text-align: center!important;
+        margin: auto!important;
+    }
+}
