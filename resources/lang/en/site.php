@@ -9,7 +9,7 @@ return [
     'Reset Password'=>'Reset Password',
         //notification
     'order_new_mail'=>'تم الطلب بنجاح طلبك  الان قيد المراجعة والتنفيذ',
-    'box_new_mail'=>'Box From Trendat',
+    'box_new_mail'=>'Box From Homey',
 
 
     'notifi_free_shopping_title'=>'Free shipping is activated',
@@ -26,7 +26,7 @@ return [
 
     'send_notifi_pro'=>'send notification',
     'invoice_download'=>'Download invoice',
-    'app_name' => 'Trendat',
+    'app_name' => 'Homey',
     'more' => 'See More',
     'please_Select' => 'Please choose a ',
     'add to wishlist' => 'add to wishlist',

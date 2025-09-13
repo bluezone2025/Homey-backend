@@ -25,7 +25,7 @@ return [
     'invoice_download'=>'حمل الفاتوره',
     'size' => 'المقاس',
     'color' => 'اللون',
-    'app_name' => 'تريندات',
+    'app_name' => 'هومي',
     'more' => 'عرض المزيد',
     'please_Select' => 'من فضلك قم بأختيار ',
     'description' => 'تفاصيل المنتج',

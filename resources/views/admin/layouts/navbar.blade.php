@@ -8,7 +8,7 @@
 {{--                </a>--}}
             </li>
             <li class="nav-item theme-text">
-                <a href="{{route('admin.home')}}" class="nav-link"> Trendat </a>
+                <a href="{{route('admin.home')}}" class="nav-link"> Homey </a>
             </li>
         </ul>
 

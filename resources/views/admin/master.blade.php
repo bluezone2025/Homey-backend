@@ -6,7 +6,7 @@
     <!-- ///// meta ///// -->
     @include('admin.includes.meta')
 
-    <title>Trendat</title>
+    <title>Homey</title>
     <link rel="icon" type="image/png" href="{{asset('assets/design')}}/images/favicon.ico">
 
     <!-- ///// style css ///// -->
