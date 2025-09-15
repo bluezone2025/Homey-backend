@@ -287,6 +287,11 @@ return [
     'sort_by'=>'Sort by',
     'bestProducts'=>'Best Seller',
     'Payment by Visa/Master'=>'Payment by Visa/Master',
+    'indoor_decor'=>'Indoor Decor',
+    'outdoor_decor'=>'Outdoor Decor',
+    'unique_pieces'=>'Unique Pieces',
+
+
 
 ];
 

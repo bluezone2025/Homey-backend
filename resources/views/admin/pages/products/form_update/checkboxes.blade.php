@@ -56,6 +56,34 @@
                     </label>
                 </div>
 
+               <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <span class="label-checkbox">@lang('site.indoor_decor')</span>
+                    <label class="switch s-icons s-outline s-outline-primary mb-4 mr-2">
+                        <input name="indoor" type="checkbox" value="1"
+                            {{ old('indoor', $product->indoor) ? 'checked' : '' }}>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <span class="label-checkbox">@lang('site.outdoor_decor')</span>
+                    <label class="switch s-icons s-outline s-outline-primary mb-4 mr-2">
+                        <input name="outdoor" type="checkbox" value="1"
+                            {{ old('outdoor', $product->outdoor) ? 'checked' : '' }}>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+                    <span class="label-checkbox">@lang('site.unique_pieces')</span>
+                    <label class="switch s-icons s-outline s-outline-primary mb-4 mr-2">
+                        <input name="unique" type="checkbox" value="1"
+                            {{ old('unique', $product->unique) ? 'checked' : '' }}>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+
                 @if($product->has_variant)
                     <div class="col-lg-3 col-md-3 col-sm-6 col-12">
                         <span class="label-checkbox">@lang('form.label.remove_variations')</span>

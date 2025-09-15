@@ -107,6 +107,10 @@ Route::get('get-topLikes-products' , [TapProductController::class , 'topLikesPro
 
 Route::get('get-topRating-products' , [TapProductController::class , 'topRatingProducts']);
 
+Route::get('get-indoorDecor-products' , [TapProductController::class , 'indoorDecorProducts']);
+Route::get('get-outdoorDecor-products' , [TapProductController::class , 'outdoorDecorProducts']);
+Route::get('get-uniquePieces-products' , [TapProductController::class , 'uniquePiecesProducts']);
+
 ///////////////////////////////// end tabs ///////////////////////////////////////////////
 
 

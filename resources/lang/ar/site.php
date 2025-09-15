@@ -348,8 +348,10 @@ return [
     "Minimum order amount for this coupon is :amount"   => "قمية الطلب لابد انت تساوي او اكبر من ",
     "This coupon has reached its usage limit"  => "الكوبون وصل للحد الاقصي ",
     "Coupon applied successfully"   => "تم تفعيل الكوبون",
-    "Discount"  => "الخصم"
-
+    "Discount"  => "الخصم",
+    'indoor_decor'=>'ديكور داخلي',
+    'outdoor_decor'=>'ديكور خارجي',
+    'unique_pieces'=>'قطع فريدة ',
 
 
 ];

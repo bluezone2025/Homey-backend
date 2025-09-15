@@ -106,6 +106,32 @@ class TapProductController extends Controller
 
     }
 
+     public function indoorDecorProducts(){
+
+        $products = Product::customSelect()->where('indoor' ,1);
+        $products=$this->ProductSort($products);
+
+        return $this->responseSuccess($products);
+    }
+
+     public function outdoorDecorProducts(){
+
+        $products = Product::customSelect()->where('outdoor' ,1);
+        $products=$this->ProductSort($products);
+
+        return $this->responseSuccess($products);
+    }
+
+     public function uniquePiecesProducts(){
+
+        $products = Product::customSelect()->where('unique' ,1);
+        $products=$this->ProductSort($products);
+
+        return $this->responseSuccess($products);
+    }
+
+
+
     ///////////////////////////////////////////////////////
     ////                                               ////
     //// ............  Methods Clean Code ............ ////
@@ -143,6 +169,10 @@ class TapProductController extends Controller
           }
           return $products;
         }
+
+
+
+
 
 
     private function ProductSort2($products){

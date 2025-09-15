@@ -981,7 +981,14 @@ class ProductController extends Controller
             'quantity'            => $request->quantity == ""?0 :$request->quantity,
             'alt'                 => $request->alt,
             'slug'                => $this->slug,
-            'is_brand'            => 0
+            'is_brand'            => 0,
+            'indoor'  => $request->boolean('indoor'),
+            'outdoor' => $request->boolean('outdoor'),
+            'unique'  => $request->boolean('unique')
+
+           /*  'indoor'             => $request->has('indoor') ? 1 : 0,
+            'outdoor'             => $request->has('outdoor') ? 1 : 0,
+            'unique'             => $request->has('unique') ? 1 : 0, */
         ];
     }
 

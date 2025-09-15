@@ -19,7 +19,7 @@ class Product extends Model
            "is_recommended" ,    "has_options",    "is_best",    "end_sale" ,    "start_sale",
               "is_brand" ,    "is_clothes" ,    "ratings" ,    "quantity",
            "created_at" ,    "updated_at",    "deleted_at",    "likes_count" ,    "img",'day_order','is_order','barcode',
-           'fina_actual_regular_price','fina_actual_sale_price'
+           'fina_actual_regular_price','fina_actual_sale_price','indoor','outdoor','unique'
     ];
 
     protected $appends = ['img_src','final_regular_price','final_sale_price','has_paid_variant','has_variant'];
@@ -307,7 +307,8 @@ class Product extends Model
             'products.id', 'products.name_ar', 'products.name_en', 'products.img',
             'products.regular_price', 'products.sale_price', 'products.quantity',
             'products.discount_percentage', 'products.in_sale', 'products.end_sale',
-            'products.is_order', 'products.day_order', 'products.created_at'
+            'products.is_order', 'products.day_order','products.indoor',
+            'products.outdoor','products.unique', 'products.created_at'
         ];
 
         return $q->with('brand')->select(array_merge($columns, $otherColumns));
