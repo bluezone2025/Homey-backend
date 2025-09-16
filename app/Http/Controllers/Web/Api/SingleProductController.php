@@ -278,7 +278,7 @@ class SingleProductController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $product = Product::with('variants')->($request->product_id);
+        $product = Product::with('variants')->findOrFail($request->product_id);
 
         $combination = collect($request->selected_options)
             ->map(function ($item) {
