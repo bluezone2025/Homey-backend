@@ -12,6 +12,7 @@ use App\Models\Setting;
 use App\Models\Student;
 use App\Models\Product;
 use App\Models\Slider;
+use App\Models\Design;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Cache;
@@ -186,6 +187,10 @@ class HomeProductsController extends Controller
                 ->simplePaginate(100);
         });*/
 
+         $brands = Student::where('is_active',1)
+            ->orderByRaw('ISNULL(row_no), row_no ASC')
+            ->simplePaginate(100);
+
         $maleBrands = Cache::remember('maleBrands', $cacheDuration, function() {
             return Student::where('is_active', 1)
                 ->where('gender', 1)
@@ -289,6 +294,48 @@ class HomeProductsController extends Controller
                         ->groupBy('name_ar');
                 })
                 #->where('is_brand',0)
+                ->inRandomOrder()
+                ->take(self::COUNT_ROWS)
+                ->get();
+        });
+
+        $indoorProducts = Cache::remember('indoorProducts', $cacheDuration, function() {
+            return Product::customSelect(['products.indoor'])
+                ->where('indoor' , 1)
+                //->inStock()
+                ->whereIn('id', function($query) {
+                    $query->select(\DB::raw('MAX(id)'))
+                        ->from('products')
+                        ->groupBy('name_ar');
+                })
+                ->inRandomOrder()
+                ->take(self::COUNT_ROWS)
+                ->get();
+        });
+
+         $outdoorProducts = Cache::remember('outdoorProducts', $cacheDuration, function() {
+            return Product::customSelect(['products.outdoor'])
+                ->where('outdoor' , 1)
+                //->inStock()
+                ->whereIn('id', function($query) {
+                    $query->select(\DB::raw('MAX(id)'))
+                        ->from('products')
+                        ->groupBy('name_ar');
+                })
+                ->inRandomOrder()
+                ->take(self::COUNT_ROWS)
+                ->get();
+        });
+
+        $uniquePiecesProducts = Cache::remember('uniquePiecesProducts', $cacheDuration, function() {
+            return Product::customSelect(['products.unique'])
+                ->where('unique' , 1)
+                //->inStock()
+                ->whereIn('id', function($query) {
+                    $query->select(\DB::raw('MAX(id)'))
+                        ->from('products')
+                        ->groupBy('name_ar');
+                })
                 ->inRandomOrder()
                 ->take(self::COUNT_ROWS)
                 ->get();
@@ -484,7 +531,11 @@ class HomeProductsController extends Controller
         //});*/
 
         $ads = Cache::remember('ads', 60, function () {
-            return Ad::all();
+            return Ad::where('position', 2)->get();
+        });
+
+         $designs = Cache::remember('designs', 60, function () {
+            return Design::where('status' , 1)->get();
         });
 
         $advertisements = Cache::remember('advertisements', 60, function () {
@@ -505,27 +556,42 @@ class HomeProductsController extends Controller
             'status' => Response_Success,
             'data'   => [
 
-                'offerEndingSoon'     => $offerEndingSoon,
+                'sliders'             => $sliders,
+                'categories'          => $categories,
+                'furnitureMarkets'          => $brands,
+                'lastestProducts'         => $newProducts2,
+                'ads'                 => $ads,
+                'indoorDecor'         => $indoorProducts,
+                'outdoorDecor'         => $outdoorProducts,
+                'uniquePieces'         => $uniquePiecesProducts,
+
+               
                 /*'newProducts'         => $newProducts,*/
-                'newProducts2'         => $newProducts2,
                 /*'bestProducts'        => $bestProducts,*/
+
+
+
+
+                /* 'offerEndingSoon'     => $offerEndingSoon,
                 'bdinarProducts'        => $bdinarProducts,
                 'brandProducts'        => $brandsProducts,
                 'recommendedProducts' => $recommendedProducts,
                 'bestDiscount'        => $bestDiscount,
                 'bestPrice'           => $bestPrice,
+                'informations'        => $informations,
+                'maleBrands'          => $maleBrands,
+                'femaleBrands'          => $femaleBrands,
+                'advertisements'          => $advertisements, */
+
+
+
+
 //                'topLikes'            => $topLikes,
 //                'topRating'           => $topRating,
 //                'icons'               => $icons,
-                'informations'        => $informations,
-                'sliders'             => $sliders,
-                'ads'                 => $ads,
-                'categories'          => $categories,
-                'maleBrands'          => $maleBrands,
-                'femaleBrands'          => $femaleBrands,
+              
                /* 'marketBrands'          => $marketBrands,*/
-                //'brands'          => $brands,
-                'advertisements'          => $advertisements,
+               
             ],
         ]);
 
