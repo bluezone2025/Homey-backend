@@ -164,6 +164,7 @@ return [
     'product colors'    => 'product colors',
     'remove'            => 'remove',
     "edit slider"   => "تعديل الاسليدر",
-    "update slider"   => "تعديل الاسليدر"
+    "update slider"   => "تعديل الاسليدر",
+    'box categories'=>'عروض بوكس هومي',
 
 ];

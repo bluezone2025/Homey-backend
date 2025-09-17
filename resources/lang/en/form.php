@@ -190,7 +190,7 @@ return [
         'delete img' => 'delete image',
         'update box' => 'update box',
         'update product' => 'update product',
-        'why Kurly' => 'why Trendat',
+        'why Kurly' => 'why Homey',
         'add feature' => 'add feature',
         'discount price' => 'discount price',
         'schedule sale' => 'schedule sale',
@@ -269,7 +269,7 @@ return [
         "box_order_id"  => "Box Order Id",
         "box_id"        => "Box Id",
         "row_no"    => "Row No",
-        'thanks'    => "Thank you (:name) for shopping from Trendatt",
+        'thanks'    => "Thank you (:name) for shopping from Homey",
         'market'    => "Market",
         'update-discount'   => "Update all products by adding discount",
         'discount_date'     => "Discount end date",
@@ -301,6 +301,8 @@ return [
         'ad10' =>'Home Advertisement No. 10',
         'is_order'=>'Under Order',
         'remove_variations' => 'Remove Variations',
+        'why Kurly'=>'why homey',
+        //'box categories'=>'',
 
 
     ],

@@ -52,7 +52,7 @@
                             <thead>
                             <tr>
                                 <th>@lang('form.label.id')</th>
-                                <th>@lang('form.label.student')</th>
+                                <th>@lang('site.brand')</th>
                                 <th>نسبة الخصم</th>
                             </tr>
                             </thead>

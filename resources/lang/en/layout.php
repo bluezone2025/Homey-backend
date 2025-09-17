@@ -148,6 +148,7 @@ return [
     'cartItems'=>'cartItems',
     'advertisements'=>'Advertisements',
     "edit slider"   => "Edit slider",
-    "update slider"   => "Update slider"
+    "update slider"   => "Update slider",
+    'box categories'=>'Box Homey Offers',
 
 ];

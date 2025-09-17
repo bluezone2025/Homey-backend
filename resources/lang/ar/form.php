@@ -192,7 +192,7 @@ return [
         'Alt Text seo' => 'النص البديل  (Seo)',
         'delete img' => 'حذف الصور',
         'update product' => 'تحديث المنتج',
-        'why Kurly' => 'لماذا Trendat',
+        'why Kurly' => 'لماذا هومي',
         'add feature' => 'اضافة ميزات',
         'discount price' => 'سعر الخصم',
         'schedule sale' => 'جدول المبيعات',
@@ -276,14 +276,14 @@ return [
         "box_id"        => "رقم البوكس",
         "required_order_min_price"  => "اقل سعر للطلب",
         "row_no"    => "الظهور",
-        'trendat_percentage'=> "ن تريندات %",
+        'trendat_percentage'=> "ن هومي %",
         "student_percentage"    => "ن التاجر %",
         'total_paid_orders'  => "المبالغ",
         'total_orders'  => "ع الطلبات",
         'total_paid_products'   => "ع البيع",
-        'trendat_percentage_cacl'   => "نسبة تريندات",
+        'trendat_percentage_cacl'   => "نسبة هومي",
         'student_percentage_cacl'   => "نسبة التاجر",
-        'thanks'    => "شكراً ( :name ) لتسوقكم من تريندات",
+        'thanks'    => "شكراً ( :name ) لتسوقكم من هومي",
         'month orders total'    => "إجمالي طلبات الشهر",
         'total orders today'    => "إجمالي طلبات اليوم",
         'month orders count'    => "عدد طلبات الشهر",
@@ -352,14 +352,16 @@ return [
         'ad10' =>'الأعلان الرئيسى رقم 10 ',
         'remove_variations' => 'إزالة المتغيرات',
         'coupon_code'   => 'كود الكوبون',
-        'coupon_id'     => 'رقم الكوبون'
+        'coupon_id'     => 'رقم الكوبون',
+        'why Kurly'=>'لماذا هومي',
+
 
     ],
 
 
     'placeholder' => [
 
-        'trendat_percentage desc'=> "نسبة تريندات",
+        'trendat_percentage desc'=> "نسبة هومى",
         "student_percentage desc"    => "نسبة التاجر",
         'shipping_time'=>'مثال :5 يوم',
         'count number phone country' => 'عدد رقم هاتف الدولة',
