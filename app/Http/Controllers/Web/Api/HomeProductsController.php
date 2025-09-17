@@ -187,9 +187,14 @@ class HomeProductsController extends Controller
                 ->simplePaginate(100);
         });*/
 
-         $brands = Student::where('is_active',1)
-            ->orderByRaw('ISNULL(row_no), row_no ASC')
-            ->simplePaginate(100);
+        
+
+        $brands = Cache::remember('brands', $cacheDuration, function() {
+            return Student::where('is_active', 1)
+                ->orderByRaw('ISNULL(row_no), row_no ASC')
+                ->take(self::COUNT_ROWS)
+                ->get();
+        });
 
         $maleBrands = Cache::remember('maleBrands', $cacheDuration, function() {
             return Student::where('is_active', 1)

@@ -202,9 +202,14 @@ Route::post('register-students' , [AuthStudentController::class , 'register']);
 Route::get('home-students' , [StudentController::class , 'homeStudents']);
 
 Route::get('get-students' , [StudentController::class , 'getStudents']);
+Route::get('get-brands' , [StudentController::class , 'getStudents']);
+
 Route::get('get-students/{id}' , [StudentController::class , 'getStudent']);
+Route::get('get-brand/{id}' , [StudentController::class , 'getStudent']);
+
 
 Route::get('get-products-student' , [StudentController::class , 'getProducts']);
+Route::get('get-products-brand' , [StudentController::class , 'getProducts']);
 
 ///////////////////////////////////////// end student /////////////////////////////////////////////////
 

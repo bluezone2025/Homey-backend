@@ -364,12 +364,6 @@ class AuthController extends Controller
         ]);
     }
 
-
-
-
-
-
-
     public function checkCode(Request $request)
     {
          $validator = validator($request->all(), [
