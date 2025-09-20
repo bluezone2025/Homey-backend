@@ -19,7 +19,7 @@ class ProductCategoriesSeeder extends Seeder
 
         $product->each(function ($product){
 
-            $product->categories()->attach([random_int(5 , 14)]);
+            $product->categories()->attach([random_int(2 , 6)]);
         });
     }
 }
