@@ -86,7 +86,7 @@ class ProductRequest extends FormRequest
 
     return [
 
-        'img'                                 => [request()->segment(2) ? 'nullable' : 'required' , 'image', 'mimes:jpg,png,jpeg'],
+        'img'                                 => [request()->segment(2) ? 'nullable' : 'required' , 'image'],
         'barcode'                             => ['nullable' , 'string'  , 'max:255'],
         'name_ar'                             => ['required' , 'string'], // تم إزالة max
         'name_en'                             => ['required' , 'string'], // تم إزالة max
@@ -105,7 +105,7 @@ class ProductRequest extends FormRequest
         # 'categories'                          => ['required' , 'array'],
         # 'categories.*'                        => ['integer'],
         'images'                              => ['nullable' , 'array'],
-        'images.*'                            => ['image', 'mimes:jpg,png,jpeg'],
+        'images.*'                            => ['image'],
 
         'statements'                          => ['nullable' , 'array'],
         'statements.*'                        => ['required_with:statements' , 'array'],
