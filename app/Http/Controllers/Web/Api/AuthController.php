@@ -41,7 +41,10 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
-        $user=User::where('phone',$request->email)->first();
+
+        $loginField = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+
+        $user=User::where($loginField,$request->email)->first();
         // dd(  $user);
         if(!$user){
              return response([
@@ -51,8 +54,8 @@ class AuthController extends Controller
 
         }
 
-        if (! $token = auth()->attempt(['phone' => $request->email, 'password' => $request->password])) {
-             return response([
+        if (! $token = auth()->attempt([$loginField => $request->email, 'password' => $request->password])) {
+            return response([
                 'status'  => Response_Fail,
                 'message' => __('auth.password'),
             ]);
