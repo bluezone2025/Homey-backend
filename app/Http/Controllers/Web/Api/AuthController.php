@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
+use Google_Client;
+use Google_Service_Oauth2;
 
 class AuthController extends Controller
 {
@@ -150,6 +153,137 @@ class AuthController extends Controller
             ]
         ]);
     }
+
+
+
+    public function googleLogin(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            'id_token' => 'required|string',
+            'device_token' => 'nullable|string|max:350',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status'  => Response_Fail,
+                'message' => $validator->errors()->all(),
+            ], 422);
+        }
+
+        try {
+            $client = new Google_Client(['client_id' => env('GOOGLE_CLIENT_ID')]); // From Google Console
+            $payload = $client->verifyIdToken($request->id_token);
+
+            if (!$payload) {
+                return response()->json([
+                    'status'  => Response_Fail,
+                    'message' => 'Invalid Google ID token',
+                ], 401);
+            }
+
+            $email   = $payload['email'] ?? null;
+            $googleId= $payload['sub'] ?? null;
+            $name    = $payload['name'] ?? $email;
+            $avatar  = $payload['picture'] ?? null;
+            $verified= $payload['email_verified'] ?? false;
+
+            if (!$email || !$verified) {
+                return response()->json([
+                    'status'  => Response_Fail,
+                    'message' => 'Email not verified by Google',
+                ], 403);
+            }
+
+            // login if exists
+            $user = User::where('email', $email)->first();
+
+            if (!$user) {
+                // register new account
+                $user = User::create([
+                    'name'  => $name,
+                    'email' => $email,
+                    'phone' => null, 
+                    'password' => Hash::make(Str::random(16)),
+                    'google_id' => $googleId,
+                    'avatar' => $avatar,
+                    'email_verified_at' => now(),
+                ]);
+            } else {
+               
+                if (!$user->google_id) $user->google_id = $googleId;
+                if ($avatar) $user->avatar = $avatar;
+                $user->save();
+            }
+
+            // save device token
+            if ($request->filled('device_token')) {
+                $user->device_token = (string)$request->device_token;
+                $user->save();
+            }
+
+            // إصدار JWT token
+            if (! $token = auth()->login($user)) {
+                return response()->json([
+                    'status'  => Response_Fail,
+                    'message' => 'Could not create token',
+                ], 500);
+            }
+
+            return response()->json([
+                'status' => Response_Success,
+                'user'   => $user,
+                'token'  => $token,
+            ]);
+
+        } catch (\Exception $e) {
+            \Log::error("Google Login Error: ".$e->getMessage());
+            return response()->json([
+                'status'  => Response_Fail,
+                'message' => 'Something went wrong',
+            ], 500);
+        }
+    }
+
+   public function redirectToGoogle()
+{
+    $client = new Google_Client();
+    $client->setClientId(env('GOOGLE_CLIENT_ID'));
+    $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+    $client->setRedirectUri(env('GOOGLE_REDIRECT_URI'));
+    $client->addScope('email');
+    $client->addScope('profile');
+    $authUrl = $client->createAuthUrl();
+
+    return redirect($authUrl); // مهم: redirect للـ Google login
+}
+
+public function handleGoogleCallback(Request $request)
+{
+    $code = $request->get('code'); // جاي من Google بعد تسجيل الدخول
+    if (!$code) {
+        return response()->json([
+            'status' => false,
+            'msg' => 'code_missing'
+        ]);
+    }
+
+    $client = new Google_Client();
+    $client->setClientId(env('GOOGLE_CLIENT_ID'));
+    $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+    $client->setRedirectUri(env('GOOGLE_REDIRECT_URI'));
+    $accessToken = $client->fetchAccessTokenWithAuthCode($code);
+    $client->setAccessToken($accessToken);
+
+    $service = new Google_Service_Oauth2($client);
+    $googleUser = $service->userinfo->get();
+
+    return response()->json([
+        'status' => true,
+        'user' => $googleUser
+    ]);
+}
+
+
     public function resendCodeForRegister(Request $request) {
 
         $user = User::where('email' , $request->email_or_phone)->first();

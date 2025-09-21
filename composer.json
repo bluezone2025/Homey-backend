@@ -10,6 +10,7 @@
         "arondeparon/laravel-request-sanitizer": "^5.0",
         "bmatovu/multi-auth": "^10.4",
         "fruitcake/laravel-cors": "^2.0",
+        "google/apiclient": "^2.18",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.6",
         "laravel/framework": "^8.54",

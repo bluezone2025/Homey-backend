@@ -51,6 +51,14 @@ Route::post('custom-remove-account', [AuthController::class , 'customRemoveAccou
 Route::get('general-setting', [HomeProductsController::class , 'generalSetting']);
 Route::post('add-to-cart', [HomeProductsController::class , 'addToCart']);
 
+
+
+//Route::post('/auth/google', [AuthController::class, 'googleLogin']);
+
+Route::get('/auth/google', [AuthController::class, 'redirectToGoogle']);
+Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
+
+
 //////////////////////////////// end  auth /////////////////////////////////////////////
 
 
