@@ -18,3 +18,12 @@ yarn-error.log
 /.vscode
 /public/assets/images
 storage/bdinar-331ad-firebase-adminsdk-ku17n-f8368faa78.json
+
+# Biometric test temporary files
+/private.pem
+/public.pem
+/nonce.txt
+/signature.bin
+/signature.b64
+/signature.txt
+/nonce.b64

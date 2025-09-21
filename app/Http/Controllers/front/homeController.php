@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
+use Google_Client;
+use Google_Service_Oauth2;
 
 class homeController extends Controller
 {
@@ -791,6 +793,80 @@ if ($request->ajax()) {
                 'min_price' => $coupon->min_price
             ]
         ]);
+    }
+
+
+     public function redirectToGoogle()
+    {
+        $client = new Google_Client();
+        $client->setClientId(env('GOOGLE_CLIENT_ID'));
+        $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+        $client->setRedirectUri(env('GOOGLE_REDIRECT_URI'));
+        $client->addScope('email');
+        $client->addScope('profile');
+        $authUrl = $client->createAuthUrl();
+        //dd($authUrl);
+
+        return redirect($authUrl); // redirect to Google login
+    }
+
+    public function handleGoogleCallback(Request $request)
+    {
+        dd($request);
+        $code = $request->get('code'); 
+        if (!$code) {
+            return response()->json([
+                'status' => false,
+                'msg' => 'code_missing'
+            ]);
+        }
+
+        $client = new Google_Client();
+        $client->setClientId(env('GOOGLE_CLIENT_ID'));
+        $client->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+        $client->setRedirectUri(env('GOOGLE_REDIRECT_URI'));
+
+        $accessToken = $client->fetchAccessTokenWithAuthCode($code);
+        $client->setAccessToken($accessToken);
+
+        $service = new Google_Service_Oauth2($client);
+        $googleUser = $service->userinfo->get();
+
+        // attatch to database
+        $user = User::where('email', $googleUser->email)->first();
+
+        if (!$user) {
+            $user = User::create([
+                'name'  => $googleUser->name,
+                'email' => $googleUser->email,
+                'password' => Hash::make(Str::random(16)),
+                'google_id' => $googleUser->id,
+                'avatar' => $googleUser->picture,
+                'email_verified_at' => now(),
+            ]);
+        } else {
+            // update data if user exist
+            if (!$user->google_id) $user->google_id = $googleUser->id;
+            if ($googleUser->picture) $user->avatar = $googleUser->picture;
+            $user->save();
+        }
+
+        // get JWT token
+
+          if (! $token = auth()->attempt(['email' => $user->email, 'password' => $user->password])) {
+            return response([
+                'status'  => Response_Fail,
+                'message' => __('auth.password'),
+            ]);
+        }
+
+
+        \auth()->user()->device_token =  (string)$request->device_token;
+        
+        \auth()->user()->save();
+
+        return $this->createNewToken($token);
+
     }
 
 }

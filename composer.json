@@ -9,6 +9,7 @@
         "apility/laravel-fcm": "^1.4",
         "arondeparon/laravel-request-sanitizer": "^5.0",
         "bmatovu/multi-auth": "^10.4",
+        "firebase/php-jwt": "^6.11",
         "fruitcake/laravel-cors": "^2.0",
         "google/apiclient": "^2.18",
         "guzzlehttp/guzzle": "^7.0.1",

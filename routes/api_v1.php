@@ -53,10 +53,11 @@ Route::post('add-to-cart', [HomeProductsController::class , 'addToCart']);
 
 
 
-//Route::post('/auth/google', [AuthController::class, 'googleLogin']);
+Route::post('/auth/google', [AuthController::class, 'googleLogin']);
+Route::post('/auth/apple', [AuthController::class, 'appleLogin']);
+Route::post('biometric/challenge', [AuthController::class, 'challengeBiometric']); // يعطي nonce
+Route::post('biometric/verify', [AuthController::class, 'verifyBiometric']);     // يتلقى signature + public_key + بيانات المستخدم ويصنع توكين
 
-Route::get('/auth/google', [AuthController::class, 'redirectToGoogle']);
-Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
 
 
 //////////////////////////////// end  auth /////////////////////////////////////////////

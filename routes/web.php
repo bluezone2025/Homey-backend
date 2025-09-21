@@ -34,6 +34,10 @@ Route::get('/get-category/{id}', [homeController::class, 'getSingleCategory'])->
 
 Route::post('/validate-coupon', [homeController::class, 'validateCoupon'])->name('validate.coupon');
 
+Route::get('/auth/google', [homeController::class, 'redirectToGoogle']);
+Route::get('/auth/google/callback', [homeController::class, 'handleGoogleCallback']);
+
+
 Route::post('web-hooks-event', function (Illuminate\Http\Request $request){
 
     /*

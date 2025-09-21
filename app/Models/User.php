@@ -33,8 +33,13 @@ class User extends Authenticatable implements JWTSubject
         'country_id',
         'password',
         'fcm_token',
-         'activation_code',
-         'email_verified_at',
+        'activation_code',
+        'email_verified_at',
+        'google_id',
+        'apple_id',
+        'avatar' ,
+        'device_id',
+        'public_key'
 
     ];
 
@@ -48,6 +53,7 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password',
         'remember_token',
+        'public_key'
     ];
 
     /**
