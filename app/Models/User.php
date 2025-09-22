@@ -39,7 +39,8 @@ class User extends Authenticatable implements JWTSubject
         'apple_id',
         'avatar' ,
         'device_id',
-        'public_key'
+        'public_key',
+        'is_professional'
 
     ];
 
